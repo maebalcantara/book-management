@@ -48,21 +48,21 @@ public class ViewBooks implements Initializable {
 
     @FXML
     protected TableColumn<Book, String> colRating;
-    
+
     //to-do
     @FXML
-    protected void btnBookInfo(){
-    	try {
-    		String bookTitle = booksTable.getSelectionModel().getSelectedItem().getBook_name();
+    protected void btnBookInfo() {
+        try {
+            String bookTitle = booksTable.getSelectionModel().getSelectedItem().getBook_name();
             String bookAuthor = booksTable.getSelectionModel().getSelectedItem().getBook_author();
             String bookImgPath = booksTable.getSelectionModel().getSelectedItem().getBook_img_path();
 
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("bookInfo.fxml"));
             Parent root = fxmlLoader.load();
             BookInfo bookInfo = fxmlLoader.getController();
-            for(Book b : books) {
-                if(b.getBook_name().equalsIgnoreCase(bookTitle) && b.getBook_author().equalsIgnoreCase(bookAuthor)){
-                    bookInfo.setItems(bookTitle, bookAuthor, bookImgPath, b.getFavorites(), Integer.parseInt(b.getBook_ID()));
+            for (Book b : books) {
+                if (b.getBook_name().equalsIgnoreCase(bookTitle) && b.getBook_author().equalsIgnoreCase(bookAuthor)) {
+                    bookInfo.setItems(bookTitle, bookAuthor, bookImgPath, b.getFavorites(), Integer.parseInt(b.getBook_ID()), b.getBook_Rating() != null ? Integer.parseInt(b.getBook_Rating()) : 0, b.getBook_description());
                     break;
                 }
             }
@@ -75,16 +75,16 @@ public class ViewBooks implements Initializable {
             Window window = scene.getWindow();
             stage = (Stage) window;
             stage.close();
-            
-    	} catch (IOException e) {
-    		System.out.println("IOException occurred: " + e);
-    	}
+
+        } catch (IOException e) {
+            System.out.println("IOException occurred: " + e);
+        }
     }
 
     @FXML
-    protected void btnEditClicked(){
-    	try {
-    		String bookTitle = booksTable.getSelectionModel().getSelectedItem().getBook_name();
+    protected void btnEditClicked() {
+        try {
+            String bookTitle = booksTable.getSelectionModel().getSelectedItem().getBook_name();
             String bookAuthor = booksTable.getSelectionModel().getSelectedItem().getBook_author();
             String bookStatus = booksTable.getSelectionModel().getSelectedItem().getBook_status();
             String reading_status = booksTable.getSelectionModel().getSelectedItem().getBook_Reading_status() != null ? booksTable.getSelectionModel().getSelectedItem().getBook_Reading_status() : null;
@@ -107,17 +107,16 @@ public class ViewBooks implements Initializable {
             Window window = scene.getWindow();
             stage = (Stage) window;
             stage.close();
-			
-		} catch (NullPointerException e) {
-			Alert warning = new Alert(AlertType.WARNING);
-			warning.setHeaderText(null);
-			warning.setTitle("NullPointerException Occurred");
-			warning.setContentText("Please select an item from the table to edit.");
-			warning.showAndWait();
-		} catch (IOException e) {
-			System.out.println("IOException occurred: " + e);
-		}
-        
+
+        } catch (NullPointerException e) {
+            Alert warning = new Alert(AlertType.WARNING);
+            warning.setHeaderText(null);
+            warning.setTitle("NullPointerException Occurred");
+            warning.setContentText("Please select an item from the table to edit.");
+            warning.showAndWait();
+        } catch (IOException e) {
+            System.out.println("IOException occurred: " + e);
+        }
     }
 
     @Override

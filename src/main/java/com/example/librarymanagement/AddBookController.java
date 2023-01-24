@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class AddBookController {
     private static DataSource ds = new DataSource();
-	protected FileChooser fc = new FileChooser();
+    protected FileChooser fc = new FileChooser();
 
     //Textboxes
     @FXML
@@ -25,35 +25,39 @@ public class AddBookController {
 
     @FXML
     protected TextField txtBookAuthor;
-    
+
     @FXML
     protected TextField txtBookImagePath;
 
+    @FXML
+    protected TextArea txtDescription;
     //Labels
     @FXML
     protected Label lblForTesting;
+
     //Buttons
     @FXML
     protected void addBookSubmitButton() {
         addBook();
     }
-    
-    @FXML 
+
+    @FXML
     protected void btnUploadImage() throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("home.fxml"));
+        //to-do : 1/25 - mag kuha ng image from file explorer
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("home.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        
-		File selectedFile = fc.showOpenDialog(stage); //to save sa database
-		txtBookImagePath.setText(selectedFile.toString());
+
+        File selectedFile = fc.showOpenDialog(stage); //to save sa database
+        txtBookImagePath.setText(selectedFile.toString());
 //		imgTest.setImage(new Image(selectedFile.toString()));
     }
+
     @FXML
     protected Button btnClear;
-
 
     //Radio Buttons
     @FXML
@@ -64,20 +68,21 @@ public class AddBookController {
 
     //event handlers
     @FXML
-    protected void rbAddNewBookAtHomeWhenClicked(){
+    protected void rbAddNewBookAtHomeWhenClicked() {
         rbAddNewBookLent.setSelected(false);
     }
+
     @FXML
-    protected void rbAddNewBookLentWhenClicked(){
+    protected void rbAddNewBookLentWhenClicked() {
         rbAddNewBookAtHome.setSelected(false);
     }
 
     //methods
-    private void addBook(){
+    private void addBook() {
         String book_status = "";
-        if(rbAddNewBookLent.isSelected()){
+        if (rbAddNewBookLent.isSelected()) {
             book_status = rbAddNewBookLent.getText();
-        } else if(rbAddNewBookAtHome.isSelected()){
+        } else if (rbAddNewBookAtHome.isSelected()) {
             book_status = rbAddNewBookAtHome.getText();
         }
 
@@ -103,11 +108,16 @@ public class AddBookController {
             Alert warning = new Alert(Alert.AlertType.WARNING);
             warning.setTitle("Warning");
             warning.setHeaderText(null);
-            warning.setContentText("Required book iamge path field is empty.");
+            warning.setContentText("Required book image path field is empty.");
+            warning.show();
+        } else if (txtDescription.getText().isEmpty()) {
+            Alert warning = new Alert(Alert.AlertType.WARNING);
+            warning.setTitle("Warning");
+            warning.setHeaderText(null);
+            warning.setContentText("Required book description field is empty.");
             warning.show();
         } else {
-        	//to-do: add sa db ung image path
-            if(!DataSource.getInstance().addBook(txtBookTitle.getText(), txtBookAuthor.getText(), book_status, txtBookImagePath.getText())){
+            if (!DataSource.getInstance().addBook(txtBookTitle.getText(), txtBookAuthor.getText(), book_status, txtBookImagePath.getText(), txtDescription.getText())) {
                 Alert success = new Alert(Alert.AlertType.INFORMATION);
                 success.setHeaderText(null);
                 success.setTitle("Successful");
@@ -125,7 +135,7 @@ public class AddBookController {
         }
     }
 
-    private void clearFields(){
+    private void clearFields() {
         txtBookTitle.clear();
         txtBookAuthor.clear();
         rbAddNewBookLent.setSelected(false);
@@ -144,12 +154,5 @@ public class AddBookController {
         Window window = scene.getWindow();
         stage = (Stage) window;
         stage.hide();
-
-    }
-}
-
-class EmptyFieldsException extends Exception {
-    EmptyFieldsException(String str) {
-        super(str);
     }
 }

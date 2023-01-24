@@ -3,13 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanagement.AddBookController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanagement.AddBookController">
    <children>
-      <Label layoutX="37.0" layoutY="102.0" text="Book title:">
+      <Label layoutX="34.0" layoutY="102.0" text="Book title:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -19,37 +20,37 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="37.0" layoutY="158.0" text="Book author:">
+      <Label layoutX="34.0" layoutY="141.0" text="Book author:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBookAuthor" layoutX="169.0" layoutY="153.0">
+      <TextField fx:id="txtBookAuthor" layoutX="169.0" layoutY="136.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="37.0" layoutY="209.0" text="Book status:">
+      <Label layoutX="34.0" layoutY="177.0" text="Book status:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <RadioButton fx:id="rbAddNewBookLent" layoutX="169.0" layoutY="209.0" mnemonicParsing="false" onAction="#rbAddNewBookLentWhenClicked" text="Lent">
+      <RadioButton fx:id="rbAddNewBookLent" layoutX="170.0" layoutY="177.0" mnemonicParsing="false" onAction="#rbAddNewBookLentWhenClicked" text="Lent">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="rbAddNewBookAtHome" layoutX="271.0" layoutY="209.0" mnemonicParsing="false" onAction="#rbAddNewBookAtHomeWhenClicked" text="At home">
+      <RadioButton fx:id="rbAddNewBookAtHome" layoutX="268.0" layoutY="177.0" mnemonicParsing="false" onAction="#rbAddNewBookAtHomeWhenClicked" text="At home">
          <font>
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <Button fx:id="btnAdd" layoutX="86.0" layoutY="318.0" mnemonicParsing="false" onAction="#addBookSubmitButton" prefHeight="31.0" prefWidth="118.0" text="Add">
+      <Button fx:id="btnAdd" layoutX="77.0" layoutY="380.0" mnemonicParsing="false" onAction="#addBookSubmitButton" prefHeight="31.0" prefWidth="118.0" text="Add">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btnClear" layoutX="245.0" layoutY="318.0" mnemonicParsing="false" onAction="#btnClearClicked" prefHeight="31.0" prefWidth="118.0" text="Clear">
+      <Button fx:id="btnClear" layoutX="248.0" layoutY="380.0" mnemonicParsing="false" onAction="#btnClearClicked" prefHeight="31.0" prefWidth="118.0" text="Clear">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -60,16 +61,22 @@
          </font>
       </Label>
       <Label fx:id="lblForTesting" layoutX="227.0" layoutY="95.0" text="Label" visible="false" />
-      <Label layoutX="37.0" layoutY="257.0" text="Book image path:">
+      <Label layoutX="34.0" layoutY="215.0" text="Book image path:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBookImagePath" layoutX="169.0" layoutY="252.0">
+      <TextField fx:id="txtBookImagePath" layoutX="169.0" layoutY="210.0" prefHeight="31.0" prefWidth="157.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button layoutX="363.0" layoutY="252.0" mnemonicParsing="false" onAction="#btnUploadImage" prefHeight="30.0" prefWidth="28.0" text="Button" />
+      <Button layoutX="330.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnUploadImage" prefHeight="30.0" prefWidth="28.0" text="Button" />
+      <Label layoutX="34.0" layoutY="261.0" text="Book description:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtDescription" layoutX="168.0" layoutY="261.0" prefHeight="103.0" prefWidth="200.0" />
    </children>
 </Pane>

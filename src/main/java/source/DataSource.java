@@ -29,12 +29,13 @@ public class DataSource {
     private static final String LABEL_BOOK_READING_DATE_ENDED = "book_reading_date_ended";
     private static final String LABEL_BOOK_RATING = "book_rating";
     private static final String LABEL_BOOK_IMAGE_PATH = "book_img_path";
+    private static final String LABEL_BOOK_DESCRIPTION = "book_description";
 
     //FAVE LABELS
     private static final String LABEL_FAVE_ID = "fave_ID";
     private static final String LABEL_FAVE_PAGE = "fave_page";
     private static final String LABEL_FAVE_TEXT = "fave_text";
-    private static final String BOOK_COLUMNS = "(" + LABEL_BOOK_NAME + ", " + LABEL_BOOK_AUTHOR + ", " + LABEL_BOOK_STATUS + ", " + LABEL_BOOK_IMAGE_PATH + ")";
+    private static final String BOOK_COLUMNS = "(" + LABEL_BOOK_NAME + ", " + LABEL_BOOK_AUTHOR + ", " + LABEL_BOOK_STATUS + ", " + LABEL_BOOK_IMAGE_PATH + ", " + LABEL_BOOK_DESCRIPTION +")";
     private static final String FAVE_COLUMNS = "(" + LABEL_BOOK_ID + ", " + LABEL_FAVE_PAGE + ", " + LABEL_FAVE_TEXT + ")";
 
     private static DataSource instance = new DataSource();
@@ -93,9 +94,10 @@ public class DataSource {
     }
 
     //methods
-    public boolean addBook(String book_name, String book_author, String book_status, String book_img_path) {
+    //to add book_desc here
+    public boolean addBook(String book_name, String book_author, String book_status, String book_img_path, String book_desc) {
         if (returnBook(book_name, book_author) == null) {
-            String values = "('" + book_name + "', '" + book_author + "', '" + book_status + "', '" + book_img_path + "')";
+            String values = "('" + book_name + "', '" + book_author + "', '" + book_status + "', '" + book_img_path + "', '" + book_desc+ "')";
             return insertInto(TABLE_BOOKS, BOOK_COLUMNS, values);
         } else {
             return true;
@@ -155,14 +157,12 @@ public class DataSource {
         return text;
     }
 
-    //create an overloaded returnBook?
     public Book returnBook(int book_id) {
         String command = "SELECT * from " + TABLE_BOOKS +
                 " WHERE " + LABEL_BOOK_ID + " = " + book_id;
         try (Statement statement = conn.createStatement();
              ResultSet results = statement.executeQuery(command)) {
             while(results.next()){
-//                System.out.println("hello");
                 return returnBook(results.getString(LABEL_BOOK_NAME), results.getString(LABEL_BOOK_AUTHOR));
             }
         }catch(SQLException e ) {
@@ -179,7 +179,7 @@ public class DataSource {
             while (results.next()) {
                 String favoriteCommand = "SELECT * from " + TABLE_FAVORITES + " WHERE " + LABEL_BOOK_ID + " = " + results.getInt(LABEL_BOOK_ID);
                 if (book_name.toLowerCase().equalsIgnoreCase(results.getString(LABEL_BOOK_NAME)) && book_author.toLowerCase().equalsIgnoreCase(results.getString(LABEL_BOOK_AUTHOR))) {
-                    Book book = new Book(book_name, book_author, results.getString(LABEL_BOOK_STATUS), results.getString(LABEL_BOOK_IMAGE_PATH) != null ? results.getString(LABEL_BOOK_IMAGE_PATH) : default_book_img_path);
+                    Book book = new Book(book_name, book_author, results.getString(LABEL_BOOK_STATUS), results.getString(LABEL_BOOK_IMAGE_PATH) != null ? results.getString(LABEL_BOOK_IMAGE_PATH) : default_book_img_path, results.getString(LABEL_BOOK_DESCRIPTION) != null ? results.getString(LABEL_BOOK_DESCRIPTION) : "");
 
                     book.setBook_ID(results.getString(LABEL_BOOK_ID));
 
@@ -208,7 +208,7 @@ public class DataSource {
             books.clear();
             while (results.next()) {
                 String favoriteCommand = "SELECT * from " + TABLE_FAVORITES + " WHERE " + LABEL_BOOK_ID + " = " + results.getInt(LABEL_BOOK_ID);
-                Book book = new Book(results.getString(LABEL_BOOK_NAME), results.getString(LABEL_BOOK_AUTHOR), results.getString(LABEL_BOOK_STATUS), results.getString(LABEL_BOOK_IMAGE_PATH) != null ? results.getString(LABEL_BOOK_IMAGE_PATH) : default_book_img_path);
+                Book book = new Book(results.getString(LABEL_BOOK_NAME), results.getString(LABEL_BOOK_AUTHOR), results.getString(LABEL_BOOK_STATUS), results.getString(LABEL_BOOK_IMAGE_PATH) != null ? results.getString(LABEL_BOOK_IMAGE_PATH) : default_book_img_path, results.getString(LABEL_BOOK_DESCRIPTION) != null ? results.getString(LABEL_BOOK_DESCRIPTION) : "");
 
                 try (Statement statement2 = conn.createStatement();
                      ResultSet favoriteResult = statement2.executeQuery(favoriteCommand)) {
@@ -219,7 +219,6 @@ public class DataSource {
                 } catch (SQLException e) {
                     System.out.println("SQLException occurred: " + e);
                 }
-                //add book_ID
                 book.setBook_ID(results.getString(LABEL_BOOK_ID));
                 book.setBook_reading_status(results.getString(LABEL_BOOK_READING_STATUS) != null ? results.getString(LABEL_BOOK_READING_STATUS) : null);
                 book.setBook_reading_date_started(results.getString(LABEL_BOOK_READING_DATE_STARTED) != null ? results.getString(LABEL_BOOK_READING_DATE_STARTED) : null);

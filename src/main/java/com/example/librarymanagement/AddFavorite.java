@@ -24,20 +24,21 @@ public class AddFavorite {
 
     @FXML
     protected Button btnAdd;
+
     @FXML
     protected void btnAddClick() throws IOException {
-        if(txtPage.getText().isEmpty()){
+        if (txtPage.getText().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText(null);
             error.setContentText("Page shouldn't be empty.");
             error.showAndWait();
-        } else if(txtText.getText().isEmpty()){
+        } else if (txtText.getText().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setHeaderText(null);
             error.setContentText("Text shouldn't be empty.");
             error.showAndWait();
         } else {
-            if(!DataSource.getInstance().addFavorite(Integer.parseInt(lblBookID.getText()), Integer.parseInt(txtPage.getText()), txtText.getText())){
+            if (!DataSource.getInstance().addFavorite(Integer.parseInt(lblBookID.getText()), Integer.parseInt(txtPage.getText()), txtText.getText())) {
                 Alert success = new Alert(Alert.AlertType.INFORMATION);
                 success.setHeaderText(null);
                 success.setContentText("Favorite added.");
@@ -55,8 +56,7 @@ public class AddFavorite {
         Parent root = fxmlLoader.load();
         BookInfo bookInfo = fxmlLoader.getController();
         Book book = DataSource.getInstance().returnBook(Integer.parseInt(lblBookID.getText()));
-
-        bookInfo.setItems(book.getBook_name(), book.getBook_author(), book.getBook_img_path(), book.getFavorites(), Integer.parseInt(book.getBook_ID()));
+        bookInfo.setItems(book.getBook_name(), book.getBook_author(), book.getBook_img_path(), book.getFavorites(), Integer.parseInt(book.getBook_ID()), book.getBook_Rating() != null ? Integer.parseInt(book.getBook_Rating()) : 0, book.getBook_description());
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -67,7 +67,8 @@ public class AddFavorite {
         stage = (Stage) window;
         stage.close();
     }
-    public void setItem(int book_id){
+
+    public void setItem(int book_id) {
         lblBookID.setText(String.valueOf(book_id));
     }
 }
