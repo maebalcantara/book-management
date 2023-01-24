@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pane2ID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanagement.ViewBooks">
+   <children>
+      <Button layoutX="502.0" layoutY="428.0" mnemonicParsing="false" onAction="#btnBookInfo" prefHeight="31.0" prefWidth="206.0" text="View Book Info">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TableView fx:id="booksTable" layoutX="43.0" layoutY="82.0" prefHeight="325.0" prefWidth="780.0">
+        <columns>
+          <TableColumn fx:id="colBookName" prefWidth="119.0" text="Title" />
+          <TableColumn fx:id="colBookAuthor" minWidth="0.0" prefWidth="132.0" text="Author" />
+            <TableColumn fx:id="colBookStatus" minWidth="0.0" prefWidth="98.0" text="Status" />
+            <TableColumn fx:id="colReadingStatus" minWidth="0.0" prefWidth="98.0" text="Reading Status" />
+            <TableColumn fx:id="colReadingDateStarted" minWidth="0.0" prefWidth="128.0" text="Reading Date Start" />
+            <TableColumn fx:id="colReadingDateEnded" minWidth="0.0" prefWidth="117.0" text="Reading Date End" />
+            <TableColumn fx:id="colRating" minWidth="0.0" prefWidth="87.0" text="Rating" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnEdit" layoutX="167.0" layoutY="428.0" mnemonicParsing="false" onAction="#btnEditClicked" prefHeight="31.0" prefWidth="206.0" text="Edit Book Info">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pane2ID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanagement.BookInfo">
+   <children>
+      <ImageView fx:id="bookImg" fitHeight="239.0" fitWidth="200.0" layoutX="36.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblBookTitle" layoutX="278.0" layoutY="49.0" text="Title" wrapText="true">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAuthor" layoutX="278.0" layoutY="92.0" text="Author">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblBookInfo" layoutX="278.0" layoutY="123.0" prefHeight="169.0" prefWidth="275.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbl_FavoriteParts" layoutX="35.0" layoutY="344.0" prefHeight="214.0" prefWidth="519.0">
+        <columns>
+          <TableColumn fx:id="colPage" prefWidth="75.0" text="Page/s" />
+          <TableColumn fx:id="colText" prefWidth="443.0" text="Text" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblBookTitle1" layoutX="35.0" layoutY="309.0" text="Favorite Parts:" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="424.0" layoutY="572.0" mnemonicParsing="false" onAction="#btnAdd" prefHeight="25.0" prefWidth="130.0" text="Add a Favorite" />
+      <Button fx:id="btnBack" layoutX="278.0" layoutY="572.0" mnemonicParsing="false" onAction="#btnBackOnClick" prefHeight="25.0" prefWidth="130.0" text="Back" />
+   </children>
+</Pane>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.librarymanagement.EditBook">
+   <children>
+      <Label layoutX="67.0" layoutY="72.0" text="Book title:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtBookTitle" disable="true" editable="false" layoutX="248.0" layoutY="67.0" prefHeight="31.0" prefWidth="236.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="67.0" layoutY="108.0" text="Book author:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtBookAuthor" disable="true" editable="false" layoutX="248.0" layoutY="103.0" prefHeight="31.0" prefWidth="236.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="69.0" layoutY="146.0" text="Book status:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="rbEditBookLent" layoutX="248.0" layoutY="146.0" mnemonicParsing="false" onAction="#rbEditBookLentClicked" text="Lent">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rbEditBookAtHome" layoutX="352.0" layoutY="146.0" mnemonicParsing="false" onAction="#rbEditBookAtHomeClicked" text="At home">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <Button layoutX="77.0" layoutY="352.0" mnemonicParsing="false" onAction="#btnUpdateClicked" prefHeight="31.0" prefWidth="116.0" text="Update">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="167.0" layoutY="20.0" text="Edit Book Information">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblForTesting" layoutX="227.0" layoutY="95.0" text="Label" visible="false" />
+      <ChoiceBox fx:id="choiceEditReadingStatus" layoutX="249.0" layoutY="180.0" prefHeight="25.0" prefWidth="236.0" />
+      <Label layoutX="69.0" layoutY="182.0" text="Reading Status:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="211.0" layoutY="352.0" mnemonicParsing="false" onAction="#btnClearClicked" prefHeight="31.0" prefWidth="116.0" text="Clear">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="dateStarted" layoutX="249.0" layoutY="220.0" prefHeight="25.0" prefWidth="236.0" />
+      <Label layoutX="69.0" layoutY="222.0" text="Reading Date Started:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dateEnded" layoutX="249.0" layoutY="259.0" prefHeight="25.0" prefWidth="236.0" />
+      <Label layoutX="68.0" layoutY="261.0" text="Reading Date Ended:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="69.0" layoutY="298.0" text="Book Rating:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="choiceEditRating" layoutX="250.0" layoutY="296.0" prefHeight="25.0" prefWidth="236.0" />
+      <Button fx:id="btnBack" layoutX="339.0" layoutY="352.0" mnemonicParsing="false" onAction="#btnBackClicked" prefHeight="31.0" prefWidth="116.0" text="Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
